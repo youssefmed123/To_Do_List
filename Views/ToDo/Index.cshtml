@@ -1,0 +1,37 @@
+﻿@model List<To_Do_List.Models.ToDo>
+
+<div class="row mb-2">
+    <h1>To-Do List</h1>
+    <a href="/ToDo/Create" class="btn btn-primary">Create New To-Do</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in Model)
+        {
+            <tr>
+                <td>@todo.Id</td>
+                <td>@todo.Title</td>
+                <td>@todo.Description</td>
+                <td>@todo.Deadline.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a href="/ToDo/Edit?id=@todo.Id" class="btn btn-success">Edit</a>
+                    <a href="/Todo/Delete?todoId=@todo.Id"
+                       class="btn btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this to-do item?');">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
